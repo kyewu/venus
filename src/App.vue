@@ -1,3 +1,10 @@
 <script setup lang="ts"></script>
 
-<template>1</template>
+<template>
+  <div>234</div>
+</template>
+<style lang="scss" scoped>
+div {
+  color: red;
+}
+</style>
