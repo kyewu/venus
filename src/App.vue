@@ -1,10 +1,4 @@
-<script setup lang="ts"></script>
-
 <template>
-  <div>234</div>
+  <router-view></router-view>
 </template>
-<style lang="scss" scoped>
-div {
-  color: red;
-}
-</style>
+<script setup lang="ts"></script>
