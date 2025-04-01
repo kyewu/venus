@@ -5,5 +5,6 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink } from 'vue-router'
+const count = ref(0)
+console.log(count.value)
 </script>
