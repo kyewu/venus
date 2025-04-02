@@ -8,7 +8,7 @@ import VueRouter from 'unplugin-vue-router/vite'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
-
+import Components from 'unplugin-vue-components/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
@@ -34,6 +34,9 @@ export default defineConfig({
       eslintrc: {
         enabled: false,
       },
+    }),
+    Components({
+      dts: 'src/components.d.ts',
     }),
     vueDevTools(),
   ],
