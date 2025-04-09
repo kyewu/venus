@@ -4,22 +4,27 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
-import VueRouter from 'unplugin-vue-router/vite'
+import unpluginVueRouter from 'unplugin-vue-router/vite'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import Components from 'unplugin-vue-components/vite'
+import VueMacros from 'vue-macros/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    VueRouter({
-      dts: 'src/typed-router.d.ts',
-      routesFolder: 'src/pages',
-      extensions: ['.vue'],
-      exclude: ['**/components/*.vue'],
+    VueMacros({
+      plugins: {
+        vueRouter: unpluginVueRouter({
+          dts: 'src/typed-router.d.ts',
+          routesFolder: 'src/pages',
+          extensions: ['.vue'],
+          exclude: ['**/components/*.vue'],
+        }),
+        vue: vue(),
+        vueJsx: vueJsx(),
+      },
     }),
-    vue(),
-    vueJsx(),
     UnoCSS(),
     AutoImport({
       include: [
