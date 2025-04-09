@@ -1,1 +1,7 @@
-<template>404 Not Found</template>
+<template>
+  <p>Not Found</p>
+</template>
+<route lang="yaml">
+meta:
+  layout: 404
+</route>

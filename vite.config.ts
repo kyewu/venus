@@ -4,27 +4,25 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import vueDevTools from 'vite-plugin-vue-devtools'
-import unpluginVueRouter from 'unplugin-vue-router/vite'
+import VueRouter from 'unplugin-vue-router/vite'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import Components from 'unplugin-vue-components/vite'
-import VueMacros from 'vue-macros/vite'
+import { VitePWA } from 'vite-plugin-pwa'
+import Layouts from 'vite-plugin-vue-layouts-next'
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    VueMacros({
-      plugins: {
-        vueRouter: unpluginVueRouter({
-          dts: 'src/typed-router.d.ts',
-          routesFolder: 'src/pages',
-          extensions: ['.vue'],
-          exclude: ['**/components/*.vue'],
-        }),
-        vue: vue(),
-        vueJsx: vueJsx(),
-      },
+    VueRouter({
+      dts: 'src/typed-router.d.ts',
+      routesFolder: 'src/pages',
+      extensions: ['.vue'],
+      exclude: ['**/components/*.vue'],
     }),
+    vue(),
+    vueJsx(),
     UnoCSS(),
     AutoImport({
       include: [
@@ -36,13 +34,15 @@ export default defineConfig({
       ],
       imports: ['vue', VueRouterAutoImports, '@vueuse/core'],
       dts: 'src/auto-imports.d.ts',
-      eslintrc: {
-        enabled: false,
-      },
     }),
     Components({
       dts: 'src/components.d.ts',
     }),
+    Layouts({
+      layoutsDirs: 'src/layouts',
+      defaultLayout: 'default',
+    }),
+    VitePWA(),
     vueDevTools(),
   ],
   resolve: {

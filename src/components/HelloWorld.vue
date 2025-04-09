@@ -11,10 +11,10 @@
 <script setup lang="ts">
 const { foo, msg } = defineProps<{ foo: string; msg: string }>()
 console.log(foo)
-const emit = defineEmits<{ change: [id: number] }>()
+const emit = defineEmits<{ changeClick: [id: number] }>()
 const change = () => {
   modelValue.value = 'hello model value+'
-  emit('change', 1)
+  emit('changeClick', 1)
 }
 
 const modelValue = defineModel<string>({ required: true })
